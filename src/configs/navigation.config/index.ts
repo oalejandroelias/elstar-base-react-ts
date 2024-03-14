@@ -3,61 +3,64 @@ import {
     NAV_ITEM_TYPE_ITEM,
     NAV_ITEM_TYPE_COLLAPSE
 } from '@/constants/navigation.constant'
+import publicacionNavigationConfig from './publicacion.navigation.config'
 import type { NavigationTree } from '@/@types/navigation'
 
 const navigationConfig: NavigationTree[] = [
-    {
-        key: 'home',
-        path: '/home',
-        title: 'Inicio',
-        translateKey: 'nav.home',
-        icon: 'home',
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [],
-        subMenu: [],
-    },
 
-    {
-        key: 'administracion',
-        path: '',
-        title: 'Administración',
-        translateKey: 'nav.collapseMenu.administracion',
-        icon: 'collapseMenu',
-        type: NAV_ITEM_TYPE_COLLAPSE,
-        authority: [],
-        subMenu: [
-            {
-                key: 'collapseMenu.usuario',
-                path: '/usuario',
-                title: 'Usuarios',
-                translateKey: 'nav.collapseMenu.usuario',
-                icon: '',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                subMenu: [],
-            },
-            {
-                key: 'collapseMenu.publicacion',
-                path: '/publicacion',
-                title: 'Publicaciones',
-                translateKey: 'nav.collapseMenu.publicacion',
-                icon: '',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                subMenu: [],
-            },
-            {
-                key: 'collapseMenu.item2',
-                path: '/collapse-menu-item-view-2',
-                title: 'Collapse menu item 2',
-                translateKey: 'nav.collapseMenu.item2',
-                icon: '',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [],
-                subMenu: [],
-            },
-        ],
-    },
+    ...publicacionNavigationConfig
+    // {
+    //     key: 'home',
+    //     path: '/home',
+    //     title: 'Inicio',
+    //     translateKey: 'nav.home',
+    //     icon: 'home',
+    //     type: NAV_ITEM_TYPE_ITEM,
+    //     authority: [],
+    //     subMenu: [],
+    // },
+
+    // {
+    //     key: 'administracion',
+    //     path: '',
+    //     title: 'Administración',
+    //     translateKey: 'nav.collapseMenu.administracion',
+    //     icon: 'collapseMenu',
+    //     type: NAV_ITEM_TYPE_COLLAPSE,
+    //     authority: [],
+    //     subMenu: [
+    //         {
+    //             key: 'collapseMenu.usuario',
+    //             path: '/usuario',
+    //             title: 'Usuarios',
+    //             translateKey: 'nav.collapseMenu.usuario',
+    //             icon: '',
+    //             type: NAV_ITEM_TYPE_ITEM,
+    //             authority: [],
+    //             subMenu: [],
+    //         },
+    //         {
+    //             key: 'collapseMenu.publicacion',
+    //             path: '/publicacion',
+    //             title: 'Publicaciones',
+    //             translateKey: 'nav.collapseMenu.publicacion',
+    //             icon: '',
+    //             type: NAV_ITEM_TYPE_ITEM,
+    //             authority: [],
+    //             subMenu: [],
+    //         },
+    //         {
+    //             key: 'collapseMenu.item2',
+    //             path: '/collapse-menu-item-view-2',
+    //             title: 'Collapse menu item 2',
+    //             translateKey: 'nav.collapseMenu.item2',
+    //             icon: '',
+    //             type: NAV_ITEM_TYPE_ITEM,
+    //             authority: [],
+    //             subMenu: [],
+    //         },
+    //     ],
+    // },
 
 
 

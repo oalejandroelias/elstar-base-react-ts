@@ -50,7 +50,7 @@ const PublicacionTableSearch = () => {
             ref={searchInput}
             className="max-w-md md:w-52 md:mb-0 mb-4"
             size="sm"
-            placeholder="Search product"
+            placeholder="Buscar"
             prefix={<HiOutlineSearch className="text-lg" />}
             onChange={onEdit}
         />
