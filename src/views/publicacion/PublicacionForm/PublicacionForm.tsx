@@ -13,31 +13,16 @@ import cloneDeep from 'lodash/cloneDeep'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlineSave } from 'react-icons/ai'
 import * as Yup from 'yup'
+import InformacionBasicaFields from './InformacionBasicaFields'
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 type FormikRef = FormikProps<any>
 
 type InitialData = {
-    id?: string
-    name?: string
-    productCode?: string
-    img?: string
-    imgList?: {
-        id: string
-        name: string
-        img: string
-    }[]
-    category?: string
-    price?: number
-    stock?: number
-    status?: number
-    costPerItem?: number
-    bulkDiscountPrice?: number
-    taxRate?: number
-    tags?: string[]
-    brand?: string
-    vendor?: string
-    description?: string
+    Id?: string
+    Archivo?: string
+    Documento?: string
+    Titulo?: string
 }
 
 export type FormModel = Omit<InitialData, 'tags'> & {
@@ -50,7 +35,7 @@ export type OnDeleteCallback = React.Dispatch<React.SetStateAction<boolean>>
 
 type OnDelete = (callback: OnDeleteCallback) => void
 
-type ProductForm = {
+type PublicacionForm = {
     initialData?: InitialData
     type: 'edit' | 'new'
     onDiscard?: () => void
@@ -61,13 +46,12 @@ type ProductForm = {
 const { useUniqueId } = hooks
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Product Name Required'),
-    price: Yup.number().required('Price Required'),
-    stock: Yup.number().required('SKU Required'),
-    category: Yup.string().required('Category Required'),
+    Archivo: Yup.string().required('Archivo Requerido'),
+    // Documento: Yup.string().required('Documento Requerido'),
+    Titulo: Yup.string().required('Titulo Requerido'),
 })
 
-const DeleteProductButton = ({ onDelete }: { onDelete: OnDelete }) => {
+const DeletePublicacionButton = ({ onDelete }: { onDelete: OnDelete }) => {
     const [dialogOpen, setDialogOpen] = useState(false)
 
     const onConfirmDialogOpen = () => {
@@ -97,7 +81,7 @@ const DeleteProductButton = ({ onDelete }: { onDelete: OnDelete }) => {
             <ConfirmDialog
                 isOpen={dialogOpen}
                 type="danger"
-                title="Delete product"
+                title="Borrar publicación"
                 confirmButtonColor="red-600"
                 onClose={onConfirmDialogClose}
                 onRequestClose={onConfirmDialogClose}
@@ -114,26 +98,14 @@ const DeleteProductButton = ({ onDelete }: { onDelete: OnDelete }) => {
     )
 }
 
-const PublicacionForm = forwardRef<FormikRef, ProductForm>((props, ref) => {
+const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
     const {
         type,
         initialData = {
-            id: '',
-            name: '',
-            productCode: '',
-            img: '',
-            imgList: [],
-            category: '',
-            price: 0,
-            stock: 0,
-            status: 0,
-            costPerItem: 0,
-            bulkDiscountPrice: 0,
-            taxRate: 6,
-            tags: [],
-            brand: '',
-            vendor: '',
-            description: '',
+            Id: '',
+            Archivo: '',
+            Documento: '',
+            Titulo: ''
         },
         onFormSubmit,
         onDiscard,
@@ -148,12 +120,12 @@ const PublicacionForm = forwardRef<FormikRef, ProductForm>((props, ref) => {
                 innerRef={ref}
                 initialValues={{
                     ...initialData,
-                    tags: initialData?.tags
-                        ? initialData.tags.map((value) => ({
-                              label: value,
-                              value,
-                          }))
-                        : [],
+                    // tags: initialData?.tags
+                    //     ? initialData.tags.map((value) => ({
+                    //           label: value,
+                    //           value,
+                    //       }))
+                    //     : [],
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values: FormModel, { setSubmitting }) => {
@@ -164,12 +136,12 @@ const PublicacionForm = forwardRef<FormikRef, ProductForm>((props, ref) => {
                         }
                         return tag
                     })
-                    if (type === 'new') {
-                        formData.id = newId
-                        if (formData.imgList && formData.imgList.length > 0) {
-                            formData.img = formData.imgList[0].img
-                        }
-                    }
+                    // if (type === 'new') {
+                    //     formData.id = newId
+                    //     if (formData.imgList && formData.imgList.length > 0) {
+                    //         formData.img = formData.imgList[0].img
+                    //     }
+                    // }
                     onFormSubmit?.(formData, setSubmitting)
                 }}
             >
@@ -178,10 +150,10 @@ const PublicacionForm = forwardRef<FormikRef, ProductForm>((props, ref) => {
                         <FormContainer>
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                                 <div className="lg:col-span-2">
-                                    {/* <BasicInformationFields
+                                    <InformacionBasicaFields
                                         touched={touched}
                                         errors={errors}
-                                    /> */}
+                                    />
                                     {/* <PricingFields
                                         touched={touched}
                                         errors={errors}
@@ -202,7 +174,7 @@ const PublicacionForm = forwardRef<FormikRef, ProductForm>((props, ref) => {
                             >
                                 <div>
                                     {type === 'edit' && (
-                                        <DeleteProductButton
+                                        <DeletePublicacionButton
                                             onDelete={onDelete as OnDelete}
                                         />
                                     )}
@@ -214,7 +186,7 @@ const PublicacionForm = forwardRef<FormikRef, ProductForm>((props, ref) => {
                                         type="button"
                                         onClick={() => onDiscard?.()}
                                     >
-                                        Discard
+                                        Cancelar
                                     </Button>
                                     <Button
                                         size="sm"
@@ -223,7 +195,7 @@ const PublicacionForm = forwardRef<FormikRef, ProductForm>((props, ref) => {
                                         icon={<AiOutlineSave />}
                                         type="submit"
                                     >
-                                        Save
+                                        Guardar
                                     </Button>
                                 </div>
                             </StickyFooter>

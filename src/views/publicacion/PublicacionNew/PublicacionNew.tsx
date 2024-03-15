@@ -5,14 +5,17 @@ import PublicacionForm, {
 import toast from '@/components/ui/toast'
 import Notification from '@/components/ui/Notification'
 import { useNavigate } from 'react-router-dom'
-import { apiCreateSalesProduct } from '@/services/PublicacionService'
+//import { apiCreateSalesProduct } from '@/services/PublicacionService'
 
 const PublicacionNew = () => {
     const navigate = useNavigate()
 
     const addProduct = async (data: FormModel) => {
-        const response = await apiCreateSalesProduct<boolean, FormModel>(data)
-        return response.data
+        // const response = await apiCreateSalesProduct<boolean, FormModel>(data)
+        // return response.data
+
+        /**Borrar */
+        return 1;
     }
 
     const handleFormSubmit = async (
@@ -29,18 +32,18 @@ const PublicacionNew = () => {
                     type="success"
                     duration={2500}
                 >
-                    Product successfuly added
+                    Publicación guardada correctamente
                 </Notification>,
                 {
                     placement: 'top-center',
                 }
             )
-            navigate('/app/sales/product-list')
+            navigate('/app/publicacion/publicacion-list')
         }
     }
 
     const handleDiscard = () => {
-        navigate('/app/sales/product-list')
+        navigate('/app/publicacion/publicacion-list')
     }
 
     return (
