@@ -4,6 +4,7 @@ import Badge from '@/components/ui/Badge'
 import DataTable from '@/components/shared/DataTable'
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
 import { FiPackage } from 'react-icons/fi'
+import { GrDocumentPdf } from "react-icons/gr";
 import {
     getPublicaciones,
     setTableData,
@@ -21,17 +22,6 @@ import type {
     OnSortParam,
     ColumnDef,
 } from '@/components/shared/DataTable'
-
-// type Product = {
-//     id: string
-//     name: string
-//     productCode: string
-//     img: string
-//     category: string
-//     price: number
-//     stock: number
-//     status: number
-// }
 
 type Publicacion = {
     Id: string
@@ -103,7 +93,7 @@ const PublicacionColumn = ({ row }: { row: Publicacion }) => {
     const avatar = row.img ? (
         <Avatar src={row.img} />
     ) : (
-        <Avatar icon={<FiPackage />} />
+        <Avatar className='bg-inherit text-indigo-600' icon={<GrDocumentPdf />} />
     )
 
     return (
@@ -220,7 +210,6 @@ const PublicacionTable = () => {
         const newTableData = cloneDeep(tableData)
         newTableData.pageIndex = page
         dispatch(setTableData(newTableData))
-        //fetchData()
     }
 
     const onSelectChange = (value: number) => {

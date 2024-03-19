@@ -23,6 +23,9 @@ type InitialData = {
     Archivo?: string
     Documento?: string
     Titulo?: string
+    Resumen?: string
+    UbiFisId?: string
+    select?: number
 }
 
 export type FormModel = Omit<InitialData, 'tags'> & {
@@ -49,6 +52,8 @@ const validationSchema = Yup.object().shape({
     Archivo: Yup.string().required('Archivo Requerido'),
     // Documento: Yup.string().required('Documento Requerido'),
     Titulo: Yup.string().required('Titulo Requerido'),
+    select: Yup.string().required('Titulo Requerido'),
+    UbiFisId: Yup.string().required('Titulo Requerido'),
 })
 
 const DeletePublicacionButton = ({ onDelete }: { onDelete: OnDelete }) => {
@@ -105,7 +110,11 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
             Id: '',
             Archivo: '',
             Documento: '',
-            Titulo: ''
+            Titulo: '',
+            Resumen: '',
+            UbiFisId: '',
+            select: null
+
         },
         onFormSubmit,
         onDiscard,
@@ -130,12 +139,12 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
                 validationSchema={validationSchema}
                 onSubmit={(values: FormModel, { setSubmitting }) => {
                     const formData = cloneDeep(values)
-                    formData.tags = formData.tags.map((tag) => {
-                        if (typeof tag !== 'string') {
-                            return tag.value
-                        }
-                        return tag
-                    })
+                    // formData.tags = formData.tags.map((tag) => {
+                    //     if (typeof tag !== 'string') {
+                    //         return tag.value
+                    //     }
+                    //     return tag
+                    // })
                     // if (type === 'new') {
                     //     formData.id = newId
                     //     if (formData.imgList && formData.imgList.length > 0) {
@@ -153,6 +162,7 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
                                     <InformacionBasicaFields
                                         touched={touched}
                                         errors={errors}
+                                        values={values}
                                     />
                                     {/* <PricingFields
                                         touched={touched}

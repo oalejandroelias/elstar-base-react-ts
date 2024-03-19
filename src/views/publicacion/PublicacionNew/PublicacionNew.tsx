@@ -5,14 +5,14 @@ import PublicacionForm, {
 import toast from '@/components/ui/toast'
 import Notification from '@/components/ui/Notification'
 import { useNavigate } from 'react-router-dom'
-//import { apiCreateSalesProduct } from '@/services/PublicacionService'
+import { apiSavePublicacion } from '@/services/PublicacionService'
 
 const PublicacionNew = () => {
     const navigate = useNavigate()
 
-    const addProduct = async (data: FormModel) => {
-        // const response = await apiCreateSalesProduct<boolean, FormModel>(data)
-        // return response.data
+    const addPublicacion = async (data: FormModel) => {
+        const response = await apiSavePublicacion<boolean, FormModel>(data)
+        return response.data
 
         /**Borrar */
         return 1;
@@ -23,7 +23,7 @@ const PublicacionNew = () => {
         setSubmitting: SetSubmitting
     ) => {
         setSubmitting(true)
-        const success = await addProduct(values)
+        const success = await addPublicacion(values)
         setSubmitting(false)
         if (success) {
             toast.push(
