@@ -25,8 +25,12 @@ type InitialData = {
     Titulo?: string
     Resumen?: string
     UbiFisId?: string
-    select?: number
+    //select?: number
+    upload: File[]
 }
+
+const MIN_UPLOAD = 1
+const MAX_UPLOAD = 2
 
 export type FormModel = Omit<InitialData, 'tags'> & {
     tags: { label: string; value: string }[] | string[]
@@ -49,11 +53,12 @@ type PublicacionForm = {
 const { useUniqueId } = hooks
 
 const validationSchema = Yup.object().shape({
-    Archivo: Yup.string().required('Archivo Requerido'),
+    //Archivo: Yup.string().required('Archivo Requerido'),
     // Documento: Yup.string().required('Documento Requerido'),
     Titulo: Yup.string().required('Titulo Requerido'),
-    select: Yup.string().required('Titulo Requerido'),
+    //select: Yup.string().required('Titulo Requerido'),
     UbiFisId: Yup.string().required('Titulo Requerido'),
+    //upload: Yup.array().min(MIN_UPLOAD, 'At least one file uploaded!'),
 })
 
 const DeletePublicacionButton = ({ onDelete }: { onDelete: OnDelete }) => {
@@ -113,7 +118,8 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
             Titulo: '',
             Resumen: '',
             UbiFisId: '',
-            select: null
+            //select: null,
+            upload: [],
 
         },
         onFormSubmit,
@@ -163,6 +169,7 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
                                         touched={touched}
                                         errors={errors}
                                         values={values}
+                                        file_limits={{MIN_UPLOAD,MAX_UPLOAD}}
                                     />
                                     {/* <PricingFields
                                         touched={touched}

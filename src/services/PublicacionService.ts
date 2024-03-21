@@ -20,7 +20,7 @@ export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(
  * Si envio el objeto params lo envia en res.query
  */
 export async function apiSavePublicacion<T, U extends Record<string, unknown>>(data: U) {
-    //const data = { nombre: 'Ejemplo', edad: 25 };
+
     return ApiService.fetchData<T>({
         url: '/publicaciones',
         method: 'post',

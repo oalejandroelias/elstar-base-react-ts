@@ -15,6 +15,7 @@ type FormFieldsName = {
     Resumen: string
     Archivo: string
     UbiFisId: string
+    upload: string
 }
 
 type InformacionBasicaFields = {
@@ -25,19 +26,50 @@ type InformacionBasicaFields = {
         UbiFisId: string
         //tags: Options
         [key: string]: unknown
+        upload: []
+    }
+    file_limits: {
+        MIN_UPLOAD: number
+        MAX_UPLOAD: number
     }
 }
 
 const categories = [
-    { label: 'Bags', value: 'bags' },
-    { label: 'Cloths', value: 'cloths' },
-    { label: 'Devices', value: 'devices' },
-    { label: 'Shoes', value: 'shoes' },
-    { label: 'Watches', value: 'watches' },
+    { label: 'Copade', value: '1' },
+    { label: 'Cloths', value: '2' },
+    { label: 'Devices', value: '3' },
+    { label: 'Shoes', value: '4' },
+    { label: 'Watches', value: '5' },
 ]
 
 const InformacionBasicaFields = (props: InformacionBasicaFields) => {
-    const { values = { UbiFisId: '', tags: [] }, touched, errors } = props
+    const { file_limits, values = { UbiFisId: '', upload: [], tags: [] }, touched, errors } = props
+
+
+    const beforeUpload = (file: FileList | null, fileList: File[]) => {
+        let valid: string | boolean = true
+
+        const allowedFileType = ['image/jpeg', 'image/png']
+        const MAX_FILE_SIZE = 500000
+
+        if (fileList.length >= file_limits.MAX_UPLOAD) {
+            return `You can only upload ${file_limits.MAX_UPLOAD} file(s)`
+        }
+
+        if (file) {
+            for (const f of file) {
+                if (!allowedFileType.includes(f.type)) {
+                    valid = 'Please upload a .jpeg or .png file!'
+                }
+
+                if (f.size >= MAX_FILE_SIZE) {
+                    valid = 'Upload image cannot more then 500kb!'
+                }
+            }
+        }
+
+        return valid
+    }
 
     return (
         <AdaptableCard divider className="mb-4">
@@ -132,35 +164,39 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
             </FormItem>
 
 
-            <FormItem>
-            <div>
-            <div className="mb-4">
-                <Upload>
-                    <Button variant="solid" icon={<HiOutlineCloudUpload />}>
-                        Cargar Archivo
-                    </Button>
-                </Upload>
-            </div>
-            <div>
-                <Upload draggable>
-                    <div className="my-16 text-center">
-                        <div className="text-6xl mb-4 flex justify-center">
-                            <FcImageFile />
-                        </div>
-                        <p className="font-semibold">
-                            <span className="text-gray-800 dark:text-white">
-                                Soltar archivo aquí, o{' '}
-                            </span>
-                            <span className="text-blue-500">Explorar</span>
-                        </p>
-                        <p className="mt-1 opacity-60 dark:text-white">
-                            Support: jpeg, png, gif
-                        </p>
-                    </div>
-                </Upload>
-            </div>
-        </div>
-            </FormItem>
+            <FormItem
+                                asterisk
+                                label="Upload"
+                                invalid={Boolean(
+                                    errors.upload && touched.upload
+                                )}
+                                errorMessage={errors.upload as string}
+                            >
+                                <Field name="upload">
+                                    {({
+                                        field,
+                                        form,
+                                    //}: FieldProps<FormModel>) => (
+                                    }: FieldProps) => (
+                                        <Upload
+                                            beforeUpload={beforeUpload}
+                                            fileList={values.upload}
+                                            onChange={(files) =>
+                                                form.setFieldValue(
+                                                    field.name,
+                                                    files
+                                                )
+                                            }
+                                            onFileRemove={(files) =>
+                                                form.setFieldValue(
+                                                    field.name,
+                                                    files
+                                                )
+                                            }
+                                        />
+                                    )}
+                                </Field>
+                            </FormItem>
         </AdaptableCard>
     )
 }
