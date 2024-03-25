@@ -6,16 +6,14 @@ import toast from '@/components/ui/toast'
 import Notification from '@/components/ui/Notification'
 import { useNavigate } from 'react-router-dom'
 import { apiSavePublicacion } from '@/services/PublicacionService'
+import { AnyARecord } from 'dns'
 
 const PublicacionNew = () => {
     const navigate = useNavigate()
 
     const addPublicacion = async (data: FormModel) => {
-        const response = await apiSavePublicacion<boolean, FormModel>(data)
+        const response = await apiSavePublicacion<boolean, FormModel>({data})
         return response.data
-
-        /**Borrar */
-        return 1;
     }
 
     const handleFormSubmit = async (

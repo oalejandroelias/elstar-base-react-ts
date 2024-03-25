@@ -14,6 +14,7 @@ import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlineSave } from 'react-icons/ai'
 import * as Yup from 'yup'
 import InformacionBasicaFields from './InformacionBasicaFields'
+import PublicacionArchivos from './PublicacionArchivos'
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 type FormikRef = FormikProps<any>
@@ -25,6 +26,12 @@ type InitialData = {
     Titulo?: string
     Resumen?: string
     UbiFisId?: string
+    img?: string
+    imgList?: {
+        id: string
+        name: string
+        img: string
+    }[]
     //select?: number
     upload: File[]
 }
@@ -119,6 +126,8 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
             Resumen: '',
             UbiFisId: '',
             //select: null,
+            img: '',
+            imgList: [],
             upload: [],
 
         },
@@ -151,12 +160,12 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
                     //     }
                     //     return tag
                     // })
-                    // if (type === 'new') {
-                    //     formData.id = newId
-                    //     if (formData.imgList && formData.imgList.length > 0) {
-                    //         formData.img = formData.imgList[0].img
-                    //     }
-                    // }
+                    if (type === 'new') {
+                        formData.Id = newId
+                        if (formData.imgList && formData.imgList.length > 0) {
+                            formData.img = formData.imgList[0].img
+                        }
+                    }
                     onFormSubmit?.(formData, setSubmitting)
                 }}
             >
@@ -182,7 +191,7 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
                                     /> */}
                                 </div>
                                 <div className="lg:col-span-1">
-                                    {/* <ProductImages values={values} /> */}
+                                    <PublicacionArchivos values={values} />
                                 </div>
                             </div>
                             <StickyFooter

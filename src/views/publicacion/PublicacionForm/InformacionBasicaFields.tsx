@@ -50,7 +50,7 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
         let valid: string | boolean = true
 
         const allowedFileType = ['image/jpeg', 'image/png']
-        const MAX_FILE_SIZE = 500000
+        const MAX_FILE_SIZE = 5000000
 
         if (fileList.length >= file_limits.MAX_UPLOAD) {
             return `You can only upload ${file_limits.MAX_UPLOAD} file(s)`

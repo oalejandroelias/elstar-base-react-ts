@@ -8,7 +8,9 @@ import ApiService from './ApiService'
 //     SignUpResponse,
 // } from '@/@types/auth'
 
-export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(params: U) {
+export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(
+    params: U,
+) {
     return ApiService.fetchData<T>({
         url: '/publicaciones',
         method: 'get',
@@ -19,13 +21,12 @@ export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(
 /**Si envio el objeto data lo envia en res.body
  * Si envio el objeto params lo envia en res.query
  */
-export async function apiSavePublicacion<T, U extends Record<string, unknown>>(data: U) {
-
+export async function apiSavePublicacion<T, U extends Record<string, unknown>>(
+    data: U,
+) {
     return ApiService.fetchData<T>({
         url: '/publicaciones',
         method: 'post',
         data,
     })
 }
-
-
