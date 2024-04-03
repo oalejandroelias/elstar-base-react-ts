@@ -8,6 +8,7 @@ import Upload from '@/components/ui/Upload'
 import { HiEye, HiTrash } from 'react-icons/hi'
 import cloneDeep from 'lodash/cloneDeep'
 import { Field, FieldProps, FieldInputProps, FormikProps } from 'formik'
+import axios from 'axios'
 
 type Image = {
     id: string
@@ -122,6 +123,8 @@ const ImageList = (props: ImageListProps) => {
 const PublicacionArchivos = (props: ProductImagesProps) => {
     const { values } = props
 
+    
+
     const beforeUpload = (file: FileList | null) => {
         let valid: boolean | string = true
 
@@ -130,13 +133,13 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
 
         if (file) {
             for (const f of file) {
-                if (!allowedFileType.includes(f.type)) {
-                    valid = 'Please upload a .jpeg or .png file!'
-                }
+                // if (!allowedFileType.includes(f.type)) {
+                //     valid = 'Please upload a .jpeg or .png file!'
+                // }
 
-                if (f.size >= maxFileSize) {
-                    valid = 'Upload image cannot more then 500kb!'
-                }
+                // if (f.size >= maxFileSize) {
+                //     valid = 'Upload image cannot more then 500kb!'
+                // }
             }
         }
 
@@ -158,11 +161,30 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
             const newIdArr = [...splitImgId, ...[newIdNumber]]
             imageId = newIdArr.join('-')
         }
-        const image = {
-            id: imageId,
-            name: files[latestUpload].name,
-            img: URL.createObjectURL(files[latestUpload]),
-        }
+        // const image = {
+        //     id: imageId,
+        //     name: files[latestUpload].name,
+        //     img: URL.createObjectURL(files[latestUpload]),
+        // }
+        const image = files[0];
+
+        const formData = new FormData();
+        formData.append('img', image)
+
+        axios
+        .post<{ imageURL: string }>(
+            'http://localhost:3000/api/publicaciones',
+            formData,
+        )
+        .then((response) => {
+            console.log('Respuesta del servidor:', response.data)
+            // Aquí puedes manejar la respuesta del servidor
+        })
+        .catch((error) => {
+            console.error('Error al subir la imagen:', error)
+            // Aquí puedes manejar errores en la subida de la imagen
+        })
+
         const imageList = [...values.imgList, ...[image]]
         console.log('imageList', imageList)
         form.setFieldValue(field.name, imageList)
@@ -180,7 +202,7 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
 
     return (
         <AdaptableCard className="mb-4">
-            <h5>Product Image</h5>
+            <h5>Documentos</h5>
             <p className="mb-6">Add or change image for the product</p>
             <FormItem>
                 <Field name="imgList">
@@ -234,10 +256,10 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
                                     />
                                     <p className="font-semibold">
                                         <span className="text-gray-800 dark:text-white">
-                                            Drop your image here, or{' '}
+                                            Soltar archivo, o{' '}
                                         </span>
                                         <span className="text-blue-500">
-                                            browse
+                                            navegar
                                         </span>
                                     </p>
                                     <p className="mt-1 opacity-60 dark:text-white">

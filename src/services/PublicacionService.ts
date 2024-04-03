@@ -15,6 +15,7 @@ export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(
         url: '/publicaciones',
         method: 'get',
         params,
+        headers: { 'Content-Type': 'multipart/form-data' },
     })
 }
 

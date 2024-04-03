@@ -62,9 +62,9 @@ const { useUniqueId } = hooks
 const validationSchema = Yup.object().shape({
     //Archivo: Yup.string().required('Archivo Requerido'),
     // Documento: Yup.string().required('Documento Requerido'),
-    Titulo: Yup.string().required('Titulo Requerido'),
+    //Titulo: Yup.string().required('Titulo Requerido'),
     //select: Yup.string().required('Titulo Requerido'),
-    UbiFisId: Yup.string().required('Titulo Requerido'),
+    //UbiFisId: Yup.string().required('Titulo Requerido'),
     //upload: Yup.array().min(MIN_UPLOAD, 'At least one file uploaded!'),
 })
 
