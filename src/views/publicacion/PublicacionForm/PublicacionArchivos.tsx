@@ -9,6 +9,9 @@ import { HiEye, HiTrash } from 'react-icons/hi'
 import cloneDeep from 'lodash/cloneDeep'
 import { Field, FieldProps, FieldInputProps, FormikProps } from 'formik'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
+import { useAppSelector } from '../PublicacionList/store'
+import { apiSavePublicacion, apiUploadFilePublicacion } from '@/services/PublicacionService'
 
 type Image = {
     id: string
@@ -30,7 +33,9 @@ type ProductImagesProps = {
     values: FormModel
 }
 
+
 const ImageList = (props: ImageListProps) => {
+
     const { imgList, onImageDelete } = props
 
     const [selectedImg, setSelectedImg] = useState<Image>({} as Image)
@@ -123,6 +128,18 @@ const ImageList = (props: ImageListProps) => {
 const PublicacionArchivos = (props: ProductImagesProps) => {
     const { values } = props
 
+    const token = useAppSelector(
+        (state) => state.auth.session.token
+    )
+    console.log(token)
+
+    const config = {
+      headers: {
+        ContentType: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
     
 
     const beforeUpload = (file: FileList | null) => {
@@ -146,7 +163,7 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
         return valid
     }
 
-    const onUpload = (
+    const onUpload = async (
         form: FormikProps<FormModel>,
         field: FieldInputProps<FormModel>,
         files: File[]
@@ -161,29 +178,30 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
             const newIdArr = [...splitImgId, ...[newIdNumber]]
             imageId = newIdArr.join('-')
         }
-        // const image = {
-        //     id: imageId,
-        //     name: files[latestUpload].name,
-        //     img: URL.createObjectURL(files[latestUpload]),
-        // }
-        const image = files[0];
+        const image = {
+            id: imageId,
+            name: files[latestUpload].name,
+            img: URL.createObjectURL(files[latestUpload]),
+        }
+        const imageSend = files[0];
 
         const formData = new FormData();
-        formData.append('img', image)
+        formData.append('img', imageSend);
 
-        axios
-        .post<{ imageURL: string }>(
-            'http://localhost:3000/api/publicaciones',
-            formData,
-        )
-        .then((response) => {
-            console.log('Respuesta del servidor:', response.data)
-            // Aquí puedes manejar la respuesta del servidor
-        })
-        .catch((error) => {
-            console.error('Error al subir la imagen:', error)
-            // Aquí puedes manejar errores en la subida de la imagen
-        })
+        const response = await apiUploadFilePublicacion(formData)
+
+        // axios
+        // .post<{ imageURL: string }>(
+        //     'http://localhost:3000/api/publicaciones/uploadFile',
+        //     formData
+        // )
+        // .then((response) => {
+        //     console.log('Respuesta del servidor:', response.data)
+        // })
+        // .catch((error) => {
+        //     console.error('Error al subir la imagen:', error)
+           
+        // })
 
         const imageList = [...values.imgList, ...[image]]
         console.log('imageList', imageList)

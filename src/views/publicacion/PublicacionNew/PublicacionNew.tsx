@@ -16,7 +16,7 @@ const PublicacionNew = () => {
         const data = new FormData()
         data.append('img', data2.imgList[0])
         //const response = await apiSavePublicacion<boolean, FormModel>({data})
-        const response = await apiSavePublicacion<boolean, FormModel>({ data })
+        const response = await apiSavePublicacion<boolean, FormModel>({ data2 })
         return response.data
     }
 

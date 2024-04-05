@@ -1,3 +1,4 @@
+import { FormModel } from './../views/publicacion/PublicacionForm/PublicacionForm';
 import ApiService from './ApiService'
 // import type {
 //     SignInCredential,
@@ -15,7 +16,6 @@ export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(
         url: '/publicaciones',
         method: 'get',
         params,
-        headers: { 'Content-Type': 'multipart/form-data' },
     })
 }
 
@@ -29,5 +29,16 @@ export async function apiSavePublicacion<T, U extends Record<string, unknown>>(
         url: '/publicaciones',
         method: 'post',
         data,
+    })
+}
+
+export async function apiUploadFilePublicacion<T>(
+    formData: FormData,
+) {
+    return ApiService.fetchData<{ imageURL: string }>({
+        url: '/publicaciones/uploadFile',
+        method: 'post',
+        data: formData,
+        //headers: { 'Content-Type': 'multipart/form-data' },
     })
 }
