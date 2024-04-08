@@ -10,7 +10,7 @@ export const protectedRoutes = [
     {
         key: 'home',
         path: '/home',
-        component: lazy(() => import('@/views/Home')),
+        component: lazy(() => import('@/views/tablero/Dashboard')),
         authority: [],
     },
 
@@ -27,7 +27,7 @@ export const protectedRoutes = [
     //     component: lazy(() => import('@/views/publicacion/PublicacionList')),
     //     authority: [],
     // },
-    
+
     // /** Example purpose only, please remove */
     // {
     //     key: 'singleMenuItem',
