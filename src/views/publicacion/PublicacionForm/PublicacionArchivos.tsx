@@ -134,13 +134,13 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
     console.log(token)
 
     const config = {
-      headers: {
-        ContentType: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+        headers: {
+            ContentType: "application/json",
+            Authorization: `Bearer ${token}`,
+        },
     };
 
-    
+
 
     const beforeUpload = (file: FileList | null) => {
         let valid: boolean | string = true
@@ -200,7 +200,7 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
         // })
         // .catch((error) => {
         //     console.error('Error al subir la imagen:', error)
-           
+
         // })
 
         const imageList = [...values.imgList, ...[image]]
@@ -249,7 +249,7 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
                                                 darkModeSrc="/img/others/upload-dark.png"
                                             />
                                             <p className="font-semibold text-center text-gray-800 dark:text-white">
-                                                Upload
+                                                Subir
                                             </p>
                                         </div>
                                     </Upload>

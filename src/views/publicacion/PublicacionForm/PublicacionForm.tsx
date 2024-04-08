@@ -172,27 +172,28 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
                 {({ values, touched, errors, isSubmitting }) => (
                     <Form>
                         <FormContainer>
-                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                                <div className="lg:col-span-2">
-                                    <InformacionBasicaFields
-                                        touched={touched}
-                                        errors={errors}
-                                        values={values}
-                                        file_limits={{MIN_UPLOAD,MAX_UPLOAD}}
-                                    />
-                                    {/* <PricingFields
+                            {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-4"> */}
+                            <div>
+
+                                <InformacionBasicaFields
+                                    touched={touched}
+                                    errors={errors}
+                                    values={values}
+                                    file_limits={{ MIN_UPLOAD, MAX_UPLOAD }}
+                                />
+                                {/* <PricingFields
                                         touched={touched}
                                         errors={errors}
                                     /> */}
-                                    {/* <OrganizationFields
+                                {/* <OrganizationFields
                                         touched={touched}
                                         errors={errors}
                                         values={values}
                                     /> */}
-                                </div>
-                                <div className="lg:col-span-1">
-                                    <PublicacionArchivos values={values} />
-                                </div>
+
+
+                                <PublicacionArchivos values={values} />
+
                             </div>
                             <StickyFooter
                                 className="-mx-8 px-8 flex items-center justify-between py-4"

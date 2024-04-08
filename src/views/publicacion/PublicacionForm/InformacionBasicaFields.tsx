@@ -73,22 +73,230 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
 
     return (
         <AdaptableCard divider className="mb-4">
-           
-            <FormItem
-                label="Título"
-                invalid={(errors.Titulo && touched.Titulo) as boolean}
-                errorMessage={errors.Titulo}
-            >
-                <Field
-                    type="text"
-                    autoComplete="off"
-                    name="Titulo"
-                    placeholder="Título"
-                    component={Input}
-                />
-            </FormItem>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+                <FormItem
+                    label="Título"
+                    invalid={(errors.Titulo && touched.Titulo) as boolean}
+                    errorMessage={errors.Titulo}
+                >
+                    <Field
+                        type="text"
+                        autoComplete="off"
+                        name="Titulo"
+                        placeholder="Título"
+                        component={Input}
+                    />
+                </FormItem>
 
-            {/* <FormItem
+                <FormItem
+                    label="N° Registro"
+                    invalid={(errors.Titulo && touched.Titulo) as boolean}
+                    errorMessage={errors.Titulo}
+                >
+                    <Field
+                        type="text"
+                        autoComplete="off"
+                        name="Titulo"
+                        placeholder="????"
+                        component={Input}
+                    />
+                </FormItem>
+
+                <FormItem
+                    label="Páginas"
+                    invalid={(errors.Titulo && touched.Titulo) as boolean}
+                    errorMessage={errors.Titulo}
+                >
+                    <Field
+                        type="text"
+                        autoComplete="off"
+                        name="Titulo"
+                        placeholder="????"
+                        component={Input}
+                    />
+                </FormItem>
+
+                <FormItem
+                    label="Volumen"
+                    invalid={(errors.Titulo && touched.Titulo) as boolean}
+                    errorMessage={errors.Titulo}
+                >
+                    <Field
+                        type="text"
+                        autoComplete="off"
+                        name="Titulo"
+                        placeholder="????"
+                        component={Input}
+                    />
+                </FormItem>
+
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+
+                <FormItem
+                    label="Editoral"
+                    invalid={(errors.Titulo && touched.Titulo) as boolean}
+                    errorMessage={errors.Titulo}
+                >
+                    <Field
+                        type="text"
+                        autoComplete="off"
+                        name="Titulo"
+                        placeholder="????"
+                        component={Input}
+                    />
+                </FormItem>
+
+                <FormItem
+                    label="Año Publicación"
+                    invalid={(errors.Titulo && touched.Titulo) as boolean}
+                    errorMessage={errors.Titulo}
+                >
+                    <Field
+                        type="text"
+                        autoComplete="off"
+                        name="Titulo"
+                        placeholder="????"
+                        component={Input}
+                    />
+                </FormItem>
+
+                <FormItem
+                    label="Ubicación Geográfica"
+                    invalid={(errors.Titulo && touched.Titulo) as boolean}
+                    errorMessage={errors.Titulo}
+                >
+                    <Field
+                        type="text"
+                        autoComplete="off"
+                        name="Titulo"
+                        placeholder="????"
+                        component={Input}
+                    />
+                </FormItem>
+
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+
+                <FormItem
+                    label="Ubicación Física"
+                    invalid={
+                        (errors.UbiFisId && touched.UbiFisId) as boolean
+                    }
+                    errorMessage={errors.UbiFisId}
+                >
+                    <Field name="UbiFisId">
+                        {({ field, form }: FieldProps) => (
+                            <Select
+                                field={field}
+                                form={form}
+                                options={categories}
+                                value={categories.filter(
+                                    (category) =>
+                                        category.value === values.UbiFisId
+                                )}
+                                onChange={(option) =>
+                                    form.setFieldValue(
+                                        field.name,
+                                        option?.value
+                                    )
+                                }
+                            />
+                        )}
+                    </Field>
+                </FormItem>
+
+                <FormItem
+                    label="Tipo"
+                    invalid={
+                        (errors.UbiFisId && touched.UbiFisId) as boolean
+                    }
+                    errorMessage={errors.UbiFisId}
+                >
+                    <Field name="UbiFisId">
+                        {({ field, form }: FieldProps) => (
+                            <Select
+                                field={field}
+                                form={form}
+                                options={categories}
+                                value={categories.filter(
+                                    (category) =>
+                                        category.value === values.UbiFisId
+                                )}
+                                onChange={(option) =>
+                                    form.setFieldValue(
+                                        field.name,
+                                        option?.value
+                                    )
+                                }
+                            />
+                        )}
+                    </Field>
+                </FormItem>
+
+                <FormItem
+                    label="Nivel de Registro"
+                    invalid={
+                        (errors.UbiFisId && touched.UbiFisId) as boolean
+                    }
+                    errorMessage={errors.UbiFisId}
+                >
+                    <Field name="UbiFisId">
+                        {({ field, form }: FieldProps) => (
+                            <Select
+                                field={field}
+                                form={form}
+                                options={categories}
+                                value={categories.filter(
+                                    (category) =>
+                                        category.value === values.UbiFisId
+                                )}
+                                onChange={(option) =>
+                                    form.setFieldValue(
+                                        field.name,
+                                        option?.value
+                                    )
+                                }
+                            />
+                        )}
+                    </Field>
+                </FormItem>
+
+                <FormItem
+                    label="Archivo"
+                    invalid={
+                        (errors.UbiFisId && touched.UbiFisId) as boolean
+                    }
+                    errorMessage={errors.UbiFisId}
+                >
+                    <Field name="UbiFisId">
+                        {({ field, form }: FieldProps) => (
+                            <Select
+                                field={field}
+                                form={form}
+                                options={categories}
+                                value={categories.filter(
+                                    (category) =>
+                                        category.value === values.UbiFisId
+                                )}
+                                onChange={(option) =>
+                                    form.setFieldValue(
+                                        field.name,
+                                        option?.value
+                                    )
+                                }
+                            />
+                        )}
+                    </Field>
+                </FormItem>
+
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+
+                {/* <FormItem
                 label="Archivo"
                 invalid={(errors.Titulo && touched.Titulo) as boolean}
                 errorMessage={errors.Titulo}
@@ -101,7 +309,7 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                     component={Input}
                 />
             </FormItem> */}
-            {/* <FormItem
+                {/* <FormItem
                 label="Lugar"
                 invalid={(errors.UbiFisId && touched.UbiFisId) as boolean}
                 errorMessage={errors.UbiFisId}
@@ -115,29 +323,22 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                 />
             </FormItem> */}
 
-<div className="col-span-1">
+
+
+
+                <div className='col-span-4'>
                     <FormItem
-                        label="Lugar"
-                        invalid={
-                            (errors.UbiFisId && touched.UbiFisId) as boolean
-                        }
-                        errorMessage={errors.UbiFisId}
+                        label="Descripción"
+                        labelClass="!justify-start"
+                        invalid={(errors.Resumen && touched.Resumen) as boolean}
+                        errorMessage={errors.Resumen}
                     >
-                        <Field name="UbiFisId">
+                        <Field name="Resumen">
                             {({ field, form }: FieldProps) => (
-                                <Select
-                                    field={field}
-                                    form={form}
-                                    options={categories}
-                                    value={categories.filter(
-                                        (category) =>
-                                            category.value === values.UbiFisId
-                                    )}
-                                    onChange={(option) =>
-                                        form.setFieldValue(
-                                            field.name,
-                                            option?.value
-                                        )
+                                <RichTextEditor
+                                    value={field.value}
+                                    onChange={(val) =>
+                                        form.setFieldValue(field.name, val)
                                     }
                                 />
                             )}
@@ -145,58 +346,40 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                     </FormItem>
                 </div>
 
-            <FormItem
-                label="Descripción"
-                labelClass="!justify-start"
-                invalid={(errors.Resumen && touched.Resumen) as boolean}
-                errorMessage={errors.Resumen}
-            >
-                <Field name="Resumen">
-                    {({ field, form }: FieldProps) => (
-                        <RichTextEditor
-                            value={field.value}
-                            onChange={(val) =>
-                                form.setFieldValue(field.name, val)
-                            }
-                        />
+                {/* <FormItem
+                    asterisk
+                    label="Upload"
+                    invalid={Boolean(
+                        errors.upload && touched.upload
                     )}
-                </Field>
-            </FormItem>
-
-
-            <FormItem
-                                asterisk
-                                label="Upload"
-                                invalid={Boolean(
-                                    errors.upload && touched.upload
-                                )}
-                                errorMessage={errors.upload as string}
-                            >
-                                <Field name="upload">
-                                    {({
-                                        field,
-                                        form,
-                                    //}: FieldProps<FormModel>) => (
-                                    }: FieldProps) => (
-                                        <Upload
-                                            beforeUpload={beforeUpload}
-                                            fileList={values.upload}
-                                            onChange={(files) =>
-                                                form.setFieldValue(
-                                                    field.name,
-                                                    files
-                                                )
-                                            }
-                                            onFileRemove={(files) =>
-                                                form.setFieldValue(
-                                                    field.name,
-                                                    files
-                                                )
-                                            }
-                                        />
-                                    )}
-                                </Field>
-                            </FormItem>
+                    errorMessage={errors.upload as string}
+                >
+                    <Field name="upload">
+                        {({
+                            field,
+                            form,
+                            //}: FieldProps<FormModel>) => (
+                        }: FieldProps) => (
+                            <Upload
+                                beforeUpload={beforeUpload}
+                                fileList={values.upload}
+                                onChange={(files) =>
+                                    form.setFieldValue(
+                                        field.name,
+                                        files
+                                    )
+                                }
+                                onFileRemove={(files) =>
+                                    form.setFieldValue(
+                                        field.name,
+                                        files
+                                    )
+                                }
+                            />
+                        )}
+                    </Field>
+                </FormItem> */}
+            </div>
         </AdaptableCard>
     )
 }

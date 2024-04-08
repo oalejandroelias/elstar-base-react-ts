@@ -1,19 +1,5 @@
 .input {
-  @apply border 
-    border-gray-300 
-    dark:border-gray-600 
-    dark:bg-transparent 
-    rounded-md 
-    w-full 
-    py-2 px-3 
-    focus:outline-none 
-    focus:ring-1 
-    focus-within:ring-1 
-    appearance-none 
-    transition 
-    duration-150 
-    dark:text-gray-100
-    ease-in-out;
+  @apply border border-black dark:border-white dark:bg-transparent rounded-md w-full py-2 px-3 focus:outline-none focus:ring-1 focus-within:ring-1 appearance-none transition duration-150 dark:text-gray-100 ease-in-out;
 
   &::placeholder {
     @apply text-gray-400;
@@ -41,7 +27,7 @@
 }
 
 .input-disabled {
-  @apply bg-gray-100 dark:bg-gray-700  text-gray-400 cursor-not-allowed;
+  @apply bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed;
 
   &::placeholder {
     @apply opacity-70;
