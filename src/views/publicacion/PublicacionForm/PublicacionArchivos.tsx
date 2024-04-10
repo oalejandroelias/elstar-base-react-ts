@@ -131,7 +131,7 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
     const token = useAppSelector(
         (state) => state.auth.session.token
     )
-    console.log(token)
+    //console.log(token)
 
     const config = {
         headers: {
@@ -221,7 +221,7 @@ const PublicacionArchivos = (props: ProductImagesProps) => {
     return (
         <AdaptableCard className="mb-4">
             <h5>Documentos</h5>
-            <p className="mb-6">Add or change image for the product</p>
+            <p className="mb-6">Agregar archivos</p>
             <FormItem>
                 <Field name="imgList">
                     {({ field, form }: FieldProps) => {

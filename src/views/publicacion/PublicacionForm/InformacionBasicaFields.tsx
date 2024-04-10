@@ -9,21 +9,66 @@ import Button from '@/components/ui/Button'
 import { HiOutlineCloudUpload } from 'react-icons/hi'
 import { FcImageFile } from 'react-icons/fc'
 
+const ubicacionFisica = [
+    { label: 'Biblioteca', value: '1' },
+    { label: 'Hemeroteca', value: '2' },
+    { label: 'Referencia', value: '4' },
+    { label: 'Serie Copade', value: '3' },
+]
+
+const tipo = [
+    { label: 'Monografía', value: '1' },
+    { label: 'Proyecto', value: '2' },
+    { label: 'Seriada', value: '3' },
+    { label: 'Tésis', value: '4' },
+    { label: 'Doc. No Convencional', value: '5' },
+]
+
+const nivelRegistro = [
+    { label: 'Analítico', value: '1' },
+    { label: 'Monográfico', value: '3' },
+    { label: 'Colección', value: '5' },
+    { label: 'Seriada', value: '6' },
+    { label: 'Monográfico de Monografía', value: '4' },
+    { label: 'Analítica de Monografía', value: '2' },
+    { label: 'Analítica de Seriada', value: '7' },
+]
+
+const archivo = [
+    { label: 'CDCyT-COPADE', value: '1' },
+]
+
 type FormFieldsName = {
-    Id: string
-    Titulo: string
-    Resumen: string
-    Archivo: string
+    Archivo: number
+    Documento: string
     UbiFisId: string
-    upload: string
+    Tipo: number
+    Nivel: number
+    Titulo: string
+    Paginas: string
+    Tomo: string
+    Editorial: string
+    Anio: string
+    //Tema: string
+    //FechaIng: string
+    //Tamanio: string
+    //Visible: string
+    //UltVisita: string
+    //CategoriaId: string
+    Resumen: string
+    URL: string
+    ExtraidoDe: string
+    //upload: string
 }
 
 type InformacionBasicaFields = {
     touched: FormikTouched<FormFieldsName>
     errors: FormikErrors<FormFieldsName>
     values: {
-        Resumen: string
         UbiFisId: string
+        Tipo: string
+        Nivel: string
+        Archivo: string
         //tags: Options
         [key: string]: unknown
         upload: []
@@ -34,16 +79,8 @@ type InformacionBasicaFields = {
     }
 }
 
-const categories = [
-    { label: 'Copade', value: '1' },
-    { label: 'Cloths', value: '2' },
-    { label: 'Devices', value: '3' },
-    { label: 'Shoes', value: '4' },
-    { label: 'Watches', value: '5' },
-]
-
 const InformacionBasicaFields = (props: InformacionBasicaFields) => {
-    const { file_limits, values = { UbiFisId: '', upload: [], tags: [] }, touched, errors } = props
+    const { file_limits, values = { UbiFisId: '', Tipo: '', Nivel: '', Archivo: '', upload: [], tags: [] }, touched, errors } = props
 
 
     const beforeUpload = (file: FileList | null, fileList: File[]) => {
@@ -90,42 +127,42 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
 
                 <FormItem
                     label="N° Registro"
-                    invalid={(errors.Titulo && touched.Titulo) as boolean}
-                    errorMessage={errors.Titulo}
+                    invalid={(errors.Documento && touched.Documento) as boolean}
+                    errorMessage={errors.Documento}
                 >
                     <Field
                         type="text"
                         autoComplete="off"
-                        name="Titulo"
-                        placeholder="????"
+                        name="Documento"
+                        placeholder="Documento"
                         component={Input}
                     />
                 </FormItem>
 
                 <FormItem
                     label="Páginas"
-                    invalid={(errors.Titulo && touched.Titulo) as boolean}
-                    errorMessage={errors.Titulo}
+                    invalid={(errors.Paginas && touched.Paginas) as boolean}
+                    errorMessage={errors.Paginas}
                 >
                     <Field
                         type="text"
                         autoComplete="off"
-                        name="Titulo"
-                        placeholder="????"
+                        name="Paginas"
+                        placeholder="Páginas"
                         component={Input}
                     />
                 </FormItem>
 
                 <FormItem
                     label="Volumen"
-                    invalid={(errors.Titulo && touched.Titulo) as boolean}
-                    errorMessage={errors.Titulo}
+                    invalid={(errors.Tomo && touched.Tomo) as boolean}
+                    errorMessage={errors.Tomo}
                 >
                     <Field
                         type="text"
                         autoComplete="off"
-                        name="Titulo"
-                        placeholder="????"
+                        name="Tomo"
+                        placeholder="Volumen"
                         component={Input}
                     />
                 </FormItem>
@@ -136,42 +173,28 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
 
                 <FormItem
                     label="Editoral"
-                    invalid={(errors.Titulo && touched.Titulo) as boolean}
-                    errorMessage={errors.Titulo}
+                    invalid={(errors.Editorial && touched.Editorial) as boolean}
+                    errorMessage={errors.Editorial}
                 >
                     <Field
                         type="text"
                         autoComplete="off"
-                        name="Titulo"
-                        placeholder="????"
+                        name="Editorial"
+                        placeholder="Editoral"
                         component={Input}
                     />
                 </FormItem>
 
                 <FormItem
                     label="Año Publicación"
-                    invalid={(errors.Titulo && touched.Titulo) as boolean}
-                    errorMessage={errors.Titulo}
+                    invalid={(errors.Anio && touched.Anio) as boolean}
+                    errorMessage={errors.Anio}
                 >
                     <Field
                         type="text"
                         autoComplete="off"
-                        name="Titulo"
-                        placeholder="????"
-                        component={Input}
-                    />
-                </FormItem>
-
-                <FormItem
-                    label="Ubicación Geográfica"
-                    invalid={(errors.Titulo && touched.Titulo) as boolean}
-                    errorMessage={errors.Titulo}
-                >
-                    <Field
-                        type="text"
-                        autoComplete="off"
-                        name="Titulo"
-                        placeholder="????"
+                        name="Anio"
+                        placeholder="Año Publicación"
                         component={Input}
                     />
                 </FormItem>
@@ -190,10 +213,11 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                     <Field name="UbiFisId">
                         {({ field, form }: FieldProps) => (
                             <Select
+                                placeholder={<div>Seleccionar...</div>}
                                 field={field}
                                 form={form}
-                                options={categories}
-                                value={categories.filter(
+                                options={ubicacionFisica}
+                                value={ubicacionFisica.filter(
                                     (category) =>
                                         category.value === values.UbiFisId
                                 )}
@@ -211,19 +235,20 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                 <FormItem
                     label="Tipo"
                     invalid={
-                        (errors.UbiFisId && touched.UbiFisId) as boolean
+                        (errors.Tipo && touched.Tipo) as boolean
                     }
-                    errorMessage={errors.UbiFisId}
+                    errorMessage={errors.Tipo}
                 >
-                    <Field name="UbiFisId">
+                    <Field name="Tipo">
                         {({ field, form }: FieldProps) => (
                             <Select
+                                placeholder={<div>Seleccionar...</div>}
                                 field={field}
                                 form={form}
-                                options={categories}
-                                value={categories.filter(
+                                options={tipo}
+                                value={tipo.filter(
                                     (category) =>
-                                        category.value === values.UbiFisId
+                                        category.value === values.Tipo
                                 )}
                                 onChange={(option) =>
                                     form.setFieldValue(
@@ -239,19 +264,20 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                 <FormItem
                     label="Nivel de Registro"
                     invalid={
-                        (errors.UbiFisId && touched.UbiFisId) as boolean
+                        (errors.Nivel && touched.Nivel) as boolean
                     }
-                    errorMessage={errors.UbiFisId}
+                    errorMessage={errors.Nivel}
                 >
-                    <Field name="UbiFisId">
+                    <Field name="Nivel">
                         {({ field, form }: FieldProps) => (
                             <Select
+                                placeholder={<div>Seleccionar...</div>}
                                 field={field}
                                 form={form}
-                                options={categories}
-                                value={categories.filter(
+                                options={nivelRegistro}
+                                value={nivelRegistro.filter(
                                     (category) =>
-                                        category.value === values.UbiFisId
+                                        category.value === values.Nivel
                                 )}
                                 onChange={(option) =>
                                     form.setFieldValue(
@@ -267,19 +293,20 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                 <FormItem
                     label="Archivo"
                     invalid={
-                        (errors.UbiFisId && touched.UbiFisId) as boolean
+                        (errors.Archivo && touched.Archivo) as boolean
                     }
-                    errorMessage={errors.UbiFisId}
+                    errorMessage={errors.Archivo}
                 >
-                    <Field name="UbiFisId">
+                    <Field name="Archivo">
                         {({ field, form }: FieldProps) => (
                             <Select
+                                placeholder={<div>Seleccionar...</div>}
                                 field={field}
                                 form={form}
-                                options={categories}
-                                value={categories.filter(
+                                options={archivo}
+                                value={archivo.filter(
                                     (category) =>
-                                        category.value === values.UbiFisId
+                                        category.value === values.Archivo
                                 )}
                                 onChange={(option) =>
                                     form.setFieldValue(

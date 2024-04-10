@@ -20,20 +20,41 @@ import PublicacionArchivos from './PublicacionArchivos'
 type FormikRef = FormikProps<any>
 
 type InitialData = {
-    Id?: string
-    Archivo?: string
-    Documento?: string
-    Titulo?: string
-    Resumen?: string
-    UbiFisId?: string
-    img?: string
-    imgList?: {
-        id: string
-        name: string
-        img: string
-    }[]
+    Id: string
+    Archivo: string
+    Documento: string
+    UbiFisId: string
+    Tipo: number
+    Nivel: number
+    Titulo: string
+    Paginas: string
+    Tomo: string
+    Editorial: string
+    Anio: string
+    Tema: string
+    FechaIng: string
+    Tamanio: string
+    Visible: string
+    UltVisita: string
+    CategoriaId: string
+    Resumen: string
+    FecAlta: string
+    UsuAlta: string
+    FecMod: string
+    UsuMod: string
+    URL: string
+    ExtraidoDe: string
+    Lugar: string
+    //upload: string
+    // img?: string
+    // imgList?: {
+    //     id: string
+    //     name: string
+    //     img: string
+    // }[]
+    // upload: File[]
     //select?: number
-    upload: File[]
+    //tags?: string[]
 }
 
 const MIN_UPLOAD = 1
@@ -119,16 +140,37 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
     const {
         type,
         initialData = {
-            Id: '',
+            Id: null,
             Archivo: '',
             Documento: '',
-            Titulo: '',
-            Resumen: '',
             UbiFisId: '',
-            //select: null,
-            img: '',
+            Tipo: '',
+            Nivel: '',
+            Titulo: '',
+            Paginas: '',
+            Tomo: '',
+            Editorial: '',
+            Anio: '',
+            Tema: '',
+            FechaIng: '',
+            Tamanio: '',
+            Visible: '',
+            UltVisita: '',
+            CategoriaId: '',
+            Resumen: '',
+            FecAlta: '',
+            UsuAlta: '',
+            FecMod: '',
+            UsuMod: '',
+            URL: '',
+            ExtraidoDe: '',
+            Lugar: '',
+            //upload: '',
+            // img: '',
             imgList: [],
-            upload: [],
+            // upload: [],
+            //select: null,
+            //tags: []
 
         },
         onFormSubmit,
@@ -160,12 +202,12 @@ const PublicacionForm = forwardRef<FormikRef, PublicacionForm>((props, ref) => {
                     //     }
                     //     return tag
                     // })
-                    if (type === 'new') {
-                        formData.Id = newId
-                        if (formData.imgList && formData.imgList.length > 0) {
-                            formData.img = formData.imgList[0].img
-                        }
-                    }
+                    // if (type === 'new') {
+                    //     //formData.Id = newId
+                    //     if (formData.imgList && formData.imgList.length > 0) {
+                    //         formData.img = formData.imgList[0].img
+                    //     }
+                    // }
                     onFormSubmit?.(formData, setSubmitting)
                 }}
             >

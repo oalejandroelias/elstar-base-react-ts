@@ -8,10 +8,10 @@ import { GrDocumentPdf } from "react-icons/gr";
 import {
     getPublicaciones,
     setTableData,
-    setSelectedProduct,
     toggleDeleteConfirmation,
     useAppDispatch,
     useAppSelector,
+    setSelectedPublicacion,
 } from '../store'
 import useThemeClass from '@/utils/hooks/useThemeClass'
 //import ProductDeleteConfirmation from './ProductDeleteConfirmation'
@@ -22,6 +22,7 @@ import type {
     OnSortParam,
     ColumnDef,
 } from '@/components/shared/DataTable'
+import PublicacionDeleteConfirmation from './PublicacionDeleteConfirmation'
 
 type Publicacion = {
     Id: string
@@ -57,37 +58,37 @@ type Publicacion = {
 //     },
 // }
 
-// const ActionColumn = ({ row }: { row: Publicacion }) => {
-//     const dispatch = useAppDispatch()
-//     const { textTheme } = useThemeClass()
-//     const navigate = useNavigate()
+const ActionColumn = ({ row }: { row: Publicacion }) => {
+    const dispatch = useAppDispatch()
+    const { textTheme } = useThemeClass()
+    const navigate = useNavigate()
 
-//     // const onEdit = () => {
-//     //     navigate(`/app/sales/product-edit/${row.id}`)
-//     // }
+    const onEdit = () => {
+        navigate(`/app/sales/product-edit/${row.Id}`)
+    }
 
-//     // const onDelete = () => {
-//     //     dispatch(toggleDeleteConfirmation(true))
-//     //     dispatch(setSelectedProduct(row.id))
-//     // }
+    const onDelete = () => {
+        dispatch(toggleDeleteConfirmation(true))
+        dispatch(setSelectedPublicacion(row.Id))
+    }
 
-//     return (
-//         <div className="flex justify-end text-lg">
-//             <span
-//                 className={`cursor-pointer p-2 hover:${textTheme}`}
-//                 //onClick={onEdit}
-//             >
-//                 <HiOutlinePencil />
-//             </span>
-//             <span
-//                 className="cursor-pointer p-2 hover:text-red-500"
-//                 //onClick={onDelete}
-//             >
-//                 <HiOutlineTrash />
-//             </span>
-//         </div>
-//     )
-// }
+    return (
+        <div className="flex justify-end text-lg">
+            <span
+                className={`cursor-pointer p-2 hover:${textTheme}`}
+                onClick={onEdit}
+            >
+                <HiOutlinePencil />
+            </span>
+            <span
+                className="cursor-pointer p-2 hover:text-red-500"
+                onClick={onDelete}
+            >
+                <HiOutlineTrash />
+            </span>
+        </div>
+    )
+}
 
 const PublicacionColumn = ({ row }: { row: Publicacion }) => {
     const avatar = row.img ? (
@@ -197,11 +198,11 @@ const PublicacionTable = () => {
                     return <span>{Documento}</span>
                 },
             },
-            // {
-            //     header: '',
-            //     id: 'action',
-            //     cell: (props) => <ActionColumn row={props.row.original} />,
-            // },
+            {
+                header: '',
+                id: 'action',
+                cell: (props) => <ActionColumn row={props.row.original} />,
+            },
         ],
         []
     )
@@ -243,7 +244,7 @@ const PublicacionTable = () => {
                 onSelectChange={onSelectChange}
                 onSort={onSort}
             />
-            {/* <ProductDeleteConfirmation /> */}
+            <PublicacionDeleteConfirmation />
         </>
     )
 }

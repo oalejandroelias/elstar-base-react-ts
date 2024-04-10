@@ -28,16 +28,32 @@ export type ThemeConfig = {
  * we recommend to use the configuration that generated from demo.
  */
 export const themeConfig: ThemeConfig = {
-    themeColor: 'indigo',
-    direction: THEME_ENUM.DIR_LTR,
-    mode: THEME_ENUM.MODE_LIGHT,
-    primaryColorLevel: 600,
-    cardBordered: true,
-    panelExpand: false,
-    controlSize: 'md',
-    navMode: THEME_ENUM.NAV_MODE_LIGHT,
-    layout: {
-        type: THEME_ENUM.LAYOUT_TYPE_MODERN,
-        sideNavCollapse: false,
-    },
+    // themeColor: 'red',
+    // direction: THEME_ENUM.DIR_LTR,
+    // mode: THEME_ENUM.MODE_LIGHT,
+    // primaryColorLevel: 600,
+    // cardBordered: true,
+    // panelExpand: false,
+    // controlSize: 'md',
+    // navMode: THEME_ENUM.NAV_MODE_LIGHT,
+    // layout: {
+    //     type: THEME_ENUM.LAYOUT_TYPE_MODERN,
+    //     sideNavCollapse: false,
+    // },
+    
+        "themeColor": "indigo",
+        "direction": "ltr",
+        "mode": "light",
+        "primaryColorLevel": 900,
+        "cardBordered": false,
+        "panelExpand": false,
+        "controlSize": "md",
+        "navMode": "themed",
+        "layout": {
+          "type": "classic",
+          "sideNavCollapse": false
+        }
+      
 }
+
+

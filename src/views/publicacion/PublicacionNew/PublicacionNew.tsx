@@ -12,11 +12,11 @@ import { useState } from 'react'
 const PublicacionNew = () => {
     const navigate = useNavigate()
 
-    const addPublicacion = async (data2: FormModel) => {
-        const data = new FormData()
-        data.append('img', data2.imgList[0])
-        //const response = await apiSavePublicacion<boolean, FormModel>({data})
-        const response = await apiSavePublicacion<boolean, FormModel>({ data2 })
+    const addPublicacion = async (data: FormModel) => {
+        //const dataAux = new FormData()
+        //dataAux.append('img', data.imgList[0])
+     
+        const response = await apiSavePublicacion<boolean, FormModel>( data )
         return response.data
     }
 

@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { TableQueries } from "@/@types/common";
-import { apiGetPublicaciones } from '@/services/PublicacionService';
+import { apiGetPublicaciones, apiDeletePublicacion } from '@/services/PublicacionService';
 
 type Publicacion = {
     Id: string
@@ -44,13 +44,13 @@ export const getPublicaciones = createAsyncThunk(
     }
 )
 
-// export const deleteProduct = async (data: { id: string | string[] }) => {
-//     const response = await apiDeleteSalesProducts<
-//         boolean,
-//         { id: string | string[] }
-//     >(data)
-//     return response.data
-// }
+export const deletePublicacion = async (data: { id: string | string[] }) => {
+    const response = await apiDeletePublicacion<
+        boolean,
+        { id: string | string[] }
+    >(data)
+    return response.data
+}
 
 export const initialTableData: TableQueries = {
     total: 0,
@@ -70,15 +70,15 @@ const initialState: PublicacionListState = {
     publicacionList: [],
     tableData: initialTableData,
     filterData: {
-    Archivo: '',
-    Titulo: ''
+        Archivo: '',
+        Titulo: ''
     },
 }
 
 const publicacionListSlice = createSlice({
     name: `${SLICE_NAME}/state`,
     initialState,
-    reducers:{
+    reducers: {
         updatePublicacionState: (state, action) => {
             state.publicacionList = action.payload
         },
@@ -104,6 +104,6 @@ const publicacionListSlice = createSlice({
     }
 })
 
-export const { updatePublicacionState, setTableData, setFilterData, toggleDeleteConfirmation, setSelectedPublicacion } = publicacionListSlice.actions 
+export const { updatePublicacionState, setTableData, setFilterData, toggleDeleteConfirmation, setSelectedPublicacion } = publicacionListSlice.actions
 
 export default publicacionListSlice.reducer
