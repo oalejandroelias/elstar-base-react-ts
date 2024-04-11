@@ -43,6 +43,16 @@ export async function apiDeletePublicacion<
     })
 }
 
+export async function apiPutPublicacion<T, U extends Record<string, unknown>>(
+    data: U
+) {
+    return ApiService.fetchData<T>({
+        url: '/sales/publicaciones/',
+        method: 'put',
+        data,
+    })
+}
+
 export async function apiUploadFilePublicacion<T>(
     formData: FormData,
 ) {
