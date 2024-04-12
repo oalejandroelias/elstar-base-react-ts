@@ -19,6 +19,16 @@ export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(
     })
 }
 
+export async function apiGetPublicacion<T, U extends Record<string, unknown>>(
+    params: U
+) {
+    return ApiService.fetchData<T>({
+        url: `/publicaciones/${params.Id}`,
+        method: 'get',
+        params,
+    })
+}
+
 /**Si envio el objeto data lo envia en res.body
  * Si envio el objeto params lo envia en res.query
  */

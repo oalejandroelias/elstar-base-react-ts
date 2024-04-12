@@ -17,7 +17,7 @@ const Cover = ({ children, content, ...rest }: CoverProps) => {
                     backgroundImage: `url('/img/others/auth-cover-bg.jpg')`,
                 }}
             >
-                <Logo mode="dark" />
+                {/* <Logo mode="dark" />
                 <div>
                     <h3 className="text-white mb-4">
                         Jump start your project with Elstar
@@ -31,7 +31,7 @@ const Cover = ({ children, content, ...rest }: CoverProps) => {
                 <span className="text-white">
                     Copyright &copy; {`${new Date().getFullYear()}`}{' '}
                     <span className="font-semibold">{`${APP_NAME}`}</span>{' '}
-                </span>
+                </span> */}
             </div>
             <div className="flex flex-col justify-center items-center bg-white dark:bg-gray-800">
                 <div className="xl:min-w-[450px] px-8">

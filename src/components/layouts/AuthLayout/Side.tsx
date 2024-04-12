@@ -17,7 +17,7 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                     backgroundImage: `url('/img/others/auth-side-bg.jpg')`,
                 }}
             >
-                <Logo mode="dark" />
+                {/* <Logo mode="dark" />
                 <div>
                     <div className="mb-6 flex items-center gap-4">
                         <Avatar
@@ -37,19 +37,19 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                         crafted with Tailwind CSS, it fulfilled most of the use
                         case to create modern and beautiful UI and application
                     </p>
-                </div>
-                <span className="text-white">
+                </div> */}
+                {/* <span className="text-white">
                     Copyright &copy; {`${new Date().getFullYear()}`}{' '}
                     <span className="font-semibold">{`${APP_NAME}`}</span>{' '}
-                </span>
+                </span> */}
             </div>
             <div className="col-span-2 flex flex-col justify-center items-center bg-white dark:bg-gray-800">
                 <div className="xl:min-w-[450px] px-8">
                     <div className="mb-8">{content}</div>
                     {children
                         ? cloneElement(children as React.ReactElement, {
-                              ...rest,
-                          })
+                            ...rest,
+                        })
                         : null}
                 </div>
             </div>

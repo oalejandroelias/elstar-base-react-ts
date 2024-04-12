@@ -114,7 +114,7 @@ const DeletePublicacionButton = ({ onDelete }: { onDelete: OnDelete }) => {
                 type="button"
                 onClick={onConfirmDialogOpen}
             >
-                Delete
+                Eliminar
             </Button>
             <ConfirmDialog
                 isOpen={dialogOpen}

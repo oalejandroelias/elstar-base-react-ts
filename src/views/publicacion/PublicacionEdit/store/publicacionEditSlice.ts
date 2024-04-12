@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
-    apiGetPublicaciones,
+    apiGetPublicacion,
     apiPutPublicacion,
     apiDeletePublicacion,
 } from '@/services/PublicacionService'
@@ -55,7 +55,7 @@ export const SLICE_NAME = 'publicacionEdit'
 export const getPublicacion = createAsyncThunk(
     SLICE_NAME + '/getPublicaciones',
     async (data: { Id: string }) => {
-        const response = await apiGetPublicaciones<
+        const response = await apiGetPublicacion<
             GetPublicacionResponse,
             { Id: string }
         >(data)
@@ -89,7 +89,7 @@ const publicacionEditSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getPublicacion.fulfilled, (state, action) => {
-                state.publicacionData = action.payload
+                state.publicacionData = action.payload.body
                 state.loading = false
             })
             .addCase(getPublicacion.pending, (state) => {

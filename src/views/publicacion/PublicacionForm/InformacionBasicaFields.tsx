@@ -219,7 +219,7 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                                 options={ubicacionFisica}
                                 value={ubicacionFisica.filter(
                                     (category) =>
-                                        category.value === values.UbiFisId
+                                        category.value == values.UbiFisId
                                 )}
                                 onChange={(option) =>
                                     form.setFieldValue(
@@ -248,7 +248,7 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                                 options={tipo}
                                 value={tipo.filter(
                                     (category) =>
-                                        category.value === values.Tipo
+                                        category.value == values.Tipo
                                 )}
                                 onChange={(option) =>
                                     form.setFieldValue(
@@ -277,7 +277,7 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                                 options={nivelRegistro}
                                 value={nivelRegistro.filter(
                                     (category) =>
-                                        category.value === values.Nivel
+                                        category.value == values.Nivel
                                 )}
                                 onChange={(option) =>
                                     form.setFieldValue(
@@ -306,7 +306,7 @@ const InformacionBasicaFields = (props: InformacionBasicaFields) => {
                                 options={archivo}
                                 value={archivo.filter(
                                     (category) =>
-                                        category.value === values.Archivo
+                                        category.value == values.Archivo
                                 )}
                                 onChange={(option) =>
                                     form.setFieldValue(

@@ -12,7 +12,7 @@ const publicacionesRoute: Routes = [
     },
     {
         key: 'appsPublicacion.publicacionEdit',
-        path: `${APP_PREFIX_PATH}/publicacion/publicacion-edit/:productId`,
+        path: `${APP_PREFIX_PATH}/publicacion/publicacion-edit/:Id`,
         component: lazy(() => import('@/views/publicacion/PublicacionEdit')),
         authority: [ADMIN, USER],
         meta: {

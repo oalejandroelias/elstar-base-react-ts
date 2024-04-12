@@ -83,7 +83,7 @@ const SignInForm = (props: SignInFormProps) => {
                     <Form>
                         <FormContainer>
                             <FormItem
-                                label="User Name"
+                                label="Usuario"
                                 invalid={
                                     (errors.userName &&
                                         touched.userName) as boolean
@@ -94,12 +94,12 @@ const SignInForm = (props: SignInFormProps) => {
                                     type="text"
                                     autoComplete="off"
                                     name="userName"
-                                    placeholder="User Name"
+                                    placeholder="Usuario"
                                     component={Input}
                                 />
                             </FormItem>
                             <FormItem
-                                label="Password"
+                                label="Contraseña"
                                 invalid={
                                     (errors.password &&
                                         touched.password) as boolean
@@ -109,7 +109,7 @@ const SignInForm = (props: SignInFormProps) => {
                                 <Field
                                     autoComplete="off"
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder="Contraseña"
                                     component={PasswordInput}
                                 />
                             </FormItem>
@@ -119,10 +119,10 @@ const SignInForm = (props: SignInFormProps) => {
                                     name="rememberMe"
                                     component={Checkbox}
                                 >
-                                    Remember Me
+                                    Recuerdame
                                 </Field>
                                 <ActionLink to={forgotPasswordUrl}>
-                                    Forgot Password?
+                                    Olvidó la Contraseña?
                                 </ActionLink>
                             </div>
                             <Button
@@ -131,11 +131,11 @@ const SignInForm = (props: SignInFormProps) => {
                                 variant="solid"
                                 type="submit"
                             >
-                                {isSubmitting ? 'Signing in...' : 'Sign In'}
+                                {isSubmitting ? 'Ingresando...' : 'Ingresar'}
                             </Button>
                             <div className="mt-4 text-center">
-                                <span>{`Don't have an account yet?`} </span>
-                                <ActionLink to={signUpUrl}>Sign up</ActionLink>
+                                {/* <span>{`Don't have an account yet?`} </span> */}
+                                <ActionLink to={signUpUrl}>Ingresar</ActionLink>
                             </div>
                         </FormContainer>
                     </Form>
