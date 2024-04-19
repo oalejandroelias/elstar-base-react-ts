@@ -97,8 +97,9 @@ const publicacionListSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getPublicaciones.fulfilled, (state, action) => {
-            state.publicacionList = action.payload.body.data
-            state.tableData.total = action.payload.body.total
+            state.publicacionList = action.payload.rows
+            //state.tableData.total = action.payload.body.total
+            state.tableData.total = action.payload.count
             state.loading = false
         })
     }

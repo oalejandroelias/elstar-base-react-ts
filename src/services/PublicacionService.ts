@@ -13,7 +13,7 @@ export async function apiGetPublicaciones<T, U extends Record<string, unknown>>(
     params: U,
 ) {
     return ApiService.fetchData<T>({
-        url: '/publicaciones',
+        url: '/publicacion',
         method: 'get',
         params,
     })
@@ -23,7 +23,7 @@ export async function apiGetPublicacion<T, U extends Record<string, unknown>>(
     params: U
 ) {
     return ApiService.fetchData<T>({
-        url: `/publicaciones/${params.Id}`,
+        url: `/publicacion/${params.Id}`,
         method: 'get',
         params,
     })
