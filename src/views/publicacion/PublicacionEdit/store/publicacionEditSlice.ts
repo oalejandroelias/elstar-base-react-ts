@@ -89,7 +89,7 @@ const publicacionEditSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getPublicacion.fulfilled, (state, action) => {
-                state.publicacionData = action.payload.body
+                state.publicacionData = action.payload
                 state.loading = false
             })
             .addCase(getPublicacion.pending, (state) => {

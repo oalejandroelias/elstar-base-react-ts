@@ -36,7 +36,7 @@ export async function apiSavePublicacion<T, U extends Record<string, unknown>>(
     data: U,
 ) {
     return ApiService.fetchData<T>({
-        url: '/publicaciones',
+        url: '/publicacion',
         method: 'post',
         data,
     })
@@ -56,8 +56,9 @@ export async function apiDeletePublicacion<
 export async function apiPutPublicacion<T, U extends Record<string, unknown>>(
     data: U
 ) {
+    const { Id } = data;
     return ApiService.fetchData<T>({
-        url: '/sales/publicaciones/',
+        url: '/publicacion/' + Id,
         method: 'put',
         data,
     })
