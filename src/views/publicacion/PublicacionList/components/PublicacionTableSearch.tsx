@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Input from '@/components/ui/Input'
 import { HiOutlineSearch } from 'react-icons/hi'
 import {
@@ -13,6 +13,7 @@ import type { TableQueries } from '@/@types/common'
 import type { ChangeEvent } from 'react'
 
 const PublicacionTableSearch = () => {
+
     const dispatch = useAppDispatch()
 
     const searchInput = useRef(null)
@@ -20,6 +21,8 @@ const PublicacionTableSearch = () => {
     const tableData = useAppSelector(
         (state) => state.tablePublicacionList.data.tableData
     )
+
+    const [inputValue, setInputValue] = useState(tableData.query);
 
     const debounceFn = debounce(handleDebounceFn, 500)
 
@@ -42,12 +45,14 @@ const PublicacionTableSearch = () => {
     }
 
     const onEdit = (e: ChangeEvent<HTMLInputElement>) => {
-        debounceFn(e.target.value)
-    }
+        setInputValue(e.target.value);
+        debounceFn(e.target.value);
+    };
 
     return (
         <Input
             ref={searchInput}
+            value={inputValue}
             className="max-w-md md:w-52 md:mb-0 mb-4"
             size="sm"
             placeholder="Buscar"

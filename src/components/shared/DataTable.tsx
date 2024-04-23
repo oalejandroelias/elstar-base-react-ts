@@ -133,7 +133,7 @@ function _DataTable<T>(
         () =>
             pageSizes.map((number) => ({
                 value: number,
-                label: `${number} / page`,
+                label: `${number} / pag.`,
             })),
         [pageSizes]
     )
@@ -250,7 +250,7 @@ function _DataTable<T>(
 
     return (
         <Loading loading={loading && data.length !== 0} type="cover">
-            <Table>
+            <Table compact={true}>
                 <THead>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <Tr key={headerGroup.id}>
@@ -264,9 +264,9 @@ function _DataTable<T>(
                                             <div
                                                 className={classNames(
                                                     header.column.getCanSort() &&
-                                                        'cursor-pointer select-none point',
+                                                    'cursor-pointer select-none point',
                                                     loading &&
-                                                        'pointer-events-none'
+                                                    'pointer-events-none'
                                                 )}
                                                 onClick={header.column.getToggleSortingHandler()}
                                             >

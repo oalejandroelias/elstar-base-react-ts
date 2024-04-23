@@ -230,6 +230,7 @@ const PublicacionTable = () => {
         <>
             <DataTable
                 ref={tableRef}
+                selectable={false}
                 columns={columns}
                 data={data}
                 skeletonAvatarColumns={[0]}

@@ -47,7 +47,7 @@ const PublicacionEdit = () => {
         const success = await updatePublicacion(values)
         setSubmitting(false)
         if (success) {
-            popNotification('updated')
+            popNotification('Actuaización')
         }
     }
 
@@ -66,11 +66,11 @@ const PublicacionEdit = () => {
     const popNotification = (keyword: string) => {
         toast.push(
             <Notification
-                title={`Successfuly ${keyword}`}
+                title={`${keyword} Completada`}
                 type="success"
                 duration={2500}
             >
-                Product successfuly {keyword}
+                {keyword} de la Publicación Completada
             </Notification>,
             {
                 placement: 'top-center',
