@@ -68,7 +68,7 @@ export async function apiUploadFilePublicacion<T>(
     formData: FormData,
 ) {
     return ApiService.fetchData<{ imageURL: string }>({
-        url: '/publicaciones/uploadFile',
+        url: '/publicacion/uploadFile',
         method: 'post',
         data: formData,
         //headers: { 'Content-Type': 'multipart/form-data' },
