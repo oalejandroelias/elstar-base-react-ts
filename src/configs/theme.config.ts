@@ -40,20 +40,20 @@ export const themeConfig: ThemeConfig = {
     //     type: THEME_ENUM.LAYOUT_TYPE_MODERN,
     //     sideNavCollapse: false,
     // },
-    
-        "themeColor": "indigo",
-        "direction": "ltr",
-        "mode": "light",
-        "primaryColorLevel": 900,
-        "cardBordered": false,
-        "panelExpand": false,
-        "controlSize": "md",
-        "navMode": "themed",
-        "layout": {
-          "type": "classic",
-          "sideNavCollapse": false
-        }
-      
+
+    "themeColor": "indigo",
+    "direction": "ltr",
+    "mode": "light",
+    "primaryColorLevel": 900,
+    "cardBordered": false,
+    "panelExpand": false,
+    "controlSize": "md",
+    "navMode": "themed",
+    "layout": {
+        "type": "classic",
+        "sideNavCollapse": false
+    }
+
 }
 
 

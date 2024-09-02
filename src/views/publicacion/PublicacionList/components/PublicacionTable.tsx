@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import Avatar from '@/components/ui/Avatar'
 import Badge from '@/components/ui/Badge'
 import DataTable from '@/components/shared/DataTable'
-import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
+import { HiOutlineEye, HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
 import { FiPackage } from 'react-icons/fi'
 import { GrDocumentPdf } from "react-icons/gr";
 import {
@@ -30,6 +30,7 @@ type Publicacion = {
     Documento: string
     Titulo: string
     img: string
+    Anio: string
 }
 
 
@@ -74,6 +75,12 @@ const ActionColumn = ({ row }: { row: Publicacion }) => {
 
     return (
         <div className="flex justify-end text-lg">
+            <span
+                className={`cursor-pointer p-2 hover:${textTheme}`}
+                onClick={onEdit}
+            >
+                <HiOutlineEye />
+            </span>
             <span
                 className={`cursor-pointer p-2 hover:${textTheme}`}
                 onClick={onEdit}
@@ -156,12 +163,20 @@ const PublicacionTable = () => {
                     return <PublicacionColumn row={row} />
                 },
             },
+            // {
+            //     header: 'Archivo',
+            //     accessorKey: 'archivo',
+            //     cell: (props) => {
+            //         const row = props.row.original
+            //         return <span className="capitalize">{row.Archivo}</span>
+            //     },
+            // },
             {
-                header: 'Archivo',
+                header: 'Año',
                 accessorKey: 'archivo',
                 cell: (props) => {
-                    const row = props.row.original
-                    return <span className="capitalize">{row.Archivo}</span>
+                    const { Anio } = props.row.original
+                    return <span className="capitalize">{Anio}</span>
                 },
             },
             // {

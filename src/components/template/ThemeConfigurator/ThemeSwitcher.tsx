@@ -25,6 +25,9 @@ type ColorLevelList = {
 }
 
 const colorList: ColorList[] = [
+    { label: 'Azul', value: 'gestion_azul' },
+    { label: 'Verde', value: 'gestion_verde' },
+    { label: 'Amarillo', value: 'gestion_amarillo' },
     { label: 'Red', value: 'red' },
     { label: 'Orange', value: 'orange' },
     { label: 'Amber', value: 'amber' },
@@ -80,11 +83,10 @@ const CustomSelectOption = ({
 }: OptionProps<ColorList>) => {
     return (
         <div
-            className={`flex items-center justify-between p-2 ${
-                isSelected
-                    ? 'bg-gray-100 dark:bg-gray-500'
-                    : 'hover:bg-gray-50 dark:hover:bg-gray-600'
-            }`}
+            className={`flex items-center justify-between p-2 ${isSelected
+                ? 'bg-gray-100 dark:bg-gray-500'
+                : 'hover:bg-gray-50 dark:hover:bg-gray-600'
+                }`}
             {...innerProps}
         >
             <div className="flex items-center gap-2">

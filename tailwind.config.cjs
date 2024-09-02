@@ -60,6 +60,44 @@ module.exports = {
 			'2xl': '1536px',
 		},
 		extend: {
+			colors: {
+				gestion_azul: {
+					50: '#e0e5e9',  // muy claro
+					100: '#c1cbd3', // más claro
+					200: '#a2b0bc',
+					300: '#8395a6',
+					400: '#647a8f',
+					500: '#4e667a', // tono medio
+					600: '#3f5363',
+					700: '#31414d',
+					800: '#223036',
+					900: '#2b3e4c', // color base más oscuro
+				},
+				gestion_verde: {
+					50: '#e6f2e0',  // muy claro
+					100: '#cce4c1', // más claro
+					200: '#b3d7a3',
+					300: '#99c984',
+					400: '#80bc66',
+					500: '#87b867', // tono medio (color base)
+					600: '#6c9b52',
+					700: '#517d3e',
+					800: '#365e29',
+					900: '#1b4015', // más oscuro
+				},
+				gestion_amarillo: {
+					50: '#fff8e7',  // muy claro
+					100: '#fef2d8', // más claro
+					200: '#fde9c6',
+					300: '#fce1b4',
+					400: '#fbd8a3',
+					500: '#f9d092', // tono medio
+					600: '#f7c781',
+					700: '#f5be71',
+					800: '#f3b460',
+					900: '#f4dfb9', // color base más oscuro
+				},
+			},
 			typography: (theme) => ({
 				DEFAULT: {
 					css: {
